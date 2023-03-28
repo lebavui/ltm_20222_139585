@@ -1,14 +1,18 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
-int main()
+int main(int argc, char *argv[])
 {
-    printf("Xin chao - Updated\n");
-    int sum = 0;
-    for (int i = 1; i <= 10; i++)
+    if (argc != 2)
     {
-        sum += i;
-        printf("sum = %d\n", sum);
+        printf("Sai tham so\n");
+        return 1;
     }
-        
+
+    int n = atoi(argv[1]);
+    for (int i = 1; i <= n; i++)
+        printf("%d\n", i);
+
     return 0;
 }
