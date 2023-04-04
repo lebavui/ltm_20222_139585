@@ -5,8 +5,10 @@
 
 int main()
 {
-    struct addrinfo *result, *p;
-    int ret = getaddrinfo("hust.edu.vn", "http", NULL, &result);
+    struct addrinfo *result, *p, hints;
+    hints.ai_family = AF_INET;
+
+    int ret = getaddrinfo("hust.edu.vn", "http", &hints, &result);
 
     if (ret != 0)
     {
