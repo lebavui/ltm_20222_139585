@@ -31,8 +31,6 @@ int main()
         return 1;
     }
 
-    printf("Khoi tao thanh cong!!!\n");
-
     struct sockaddr_in client_addr;
     int client_addr_len = sizeof(client_addr);
 
@@ -45,19 +43,19 @@ int main()
         inet_ntoa(client_addr.sin_addr),
         ntohs(client_addr.sin_port));
 
-    char buf[256];    
-    int ret = recv(client, buf, sizeof(buf), 0);
-    if (ret < sizeof(buf))
-        buf[ret] = 0;
-    printf("%d bytes from client: %s", ret, buf);
-    
+    float arr[200];
+    int n;
+
     while (1)
     {
-        printf("Enter string: ");
-        fgets(buf, sizeof(buf), stdin);
-        send(client, buf, strlen(buf), 0);
+        printf("Nhap so phan tu mang: ");
+        scanf("%d", &n);
+        for (int i = 0; i < n; i++)
+            arr[i] = i;
 
-        if (strncmp(buf, "exit", 4) == 0)
+        send(client, arr, n * sizeof(float), 0);
+
+        if (n == 0)
             break;
     }
     
