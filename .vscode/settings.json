@@ -4,6 +4,8 @@
         "stdio.h": "c",
         "netdb.h": "c",
         "socket.h": "c",
-        "inet.h": "c"
+        "inet.h": "c",
+        "string.h": "c",
+        "types.h": "c"
     }
 }

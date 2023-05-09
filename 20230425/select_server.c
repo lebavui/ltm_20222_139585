@@ -39,6 +39,8 @@ int main()
 
     char buf[256];
 
+    struct timeval tv;
+
     while (1)
     {
         FD_ZERO(&fdread);
@@ -47,7 +49,22 @@ int main()
         for (int i = 0; i < num_clients; i++)
             FD_SET(clients[i], &fdread);
 
-        int ret = select(FD_SETSIZE, &fdread, NULL, NULL, NULL);
+        tv.tv_usec = 0;
+        tv.tv_sec = 5;
+
+        int ret = select(FD_SETSIZE, &fdread, NULL, NULL, &tv);
+
+        if (ret < 0)
+        {
+            perror("select() failed");
+            break;
+        }
+
+        if (ret == 0)
+        {
+            printf("Timed out.\n");
+            continue;
+        }
 
         if (FD_ISSET(listener, &fdread))
         {
