@@ -7,6 +7,7 @@
         "inet.h": "c",
         "string.h": "c",
         "types.h": "c",
-        "dirent.h": "c"
+        "dirent.h": "c",
+        "stdlib.h": "c"
     }
 }
